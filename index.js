@@ -22,7 +22,7 @@ connect.then((db) => {
       author: "N00B",
       title: "I cannot code!",
       content: "Anyone experienced out there?",
-      message: [
+      comments: [
         {
           body: "Hello there",
           date: "22.10.2020",
@@ -39,7 +39,7 @@ connect.then((db) => {
       title: "My code is broken - please help!",
       content: "I do not know s__t about Node.js!",
       author: "1337",
-      message: [
+      comments: [
         {
           body: "should i show a piece of code?",
           date: "25.10.2020",
@@ -58,7 +58,7 @@ connect.then((db) => {
       title: "I quit!",
       content: "This coding stuff is too hard! I quit!",
       author: "A student",
-      message: [
+      comments: [
         {
           body: "cya!",
           date: "25.10.2020",
@@ -70,13 +70,14 @@ connect.then((db) => {
       return Messages.find({}).exec();
     })
     .then((msg) => {
-      console.log(msg[0]); //prints out the 1st object for reference (this value will be modified)
+      console.log(msg[0].comments); //prints out the 1st object message (this value will be modified)
+      //printing out only comments, just because it is way easier to read
       return Messages.updateOne(
         //updates "body" value of a comment where message.id is "1" <- you can change this value to 2 to test for 2nd comment in object
-        { "message.id": "1" },
+        { "comments.id": "1" },
         {
           $set: {
-            "message.$.body": "updated comment",
+            "comments.$.body": "updated comment",
           },
         }
       );
@@ -86,7 +87,7 @@ connect.then((db) => {
       return Messages.find({}).exec();
     })
     .then((msg) => {
-      console.log(msg[0]); //prints out the 1st object for reference
+      console.log(msg[0].comments); //prints out the 1st object for reference
       return Messages.deleteMany({});
     })
     .then(() => {

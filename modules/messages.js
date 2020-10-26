@@ -28,7 +28,7 @@ const messageSchema = new Schema(
       type: String,
       required: true,
     },
-    message: {
+    comments: {
       type: [commentSchema],
     },
     content: {
