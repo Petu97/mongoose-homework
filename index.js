@@ -72,6 +72,7 @@ connect.then((db) => {
     .then((msg) => {
       console.log(msg[0].comments); //prints out the 1st object message (this value will be modified)
       //printing out only comments, just because it is way easier to read
+      //you can change the console value above to "msg + msg.comments" to log everything
       return Messages.updateOne(
         //updates "body" value of a comment where message.id is "1" <- you can change this value to 2 to test for 2nd comment in object
         { "comments.id": "1" },
